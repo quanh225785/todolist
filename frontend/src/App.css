@@ -1,0 +1,91 @@
+﻿body {
+  background-color: #fdf2f8; /* pink-50 */
+}
+
+/* Animation for fade in effect */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Animation for popup */
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation: scaleIn 0.3s ease-out;
+}
+
+/* Customizing React Calendar to make it cute */
+.react-calendar {
+  border: none !important;
+  font-family: inherit !important;
+}
+
+.react-calendar__navigation button {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #ec4899; /* pink-500 */
+  border-radius: 1rem;
+}
+
+.react-calendar__navigation button:hover {
+  background-color: #fdf2f8 !important;
+}
+
+.react-calendar__tile {
+  padding: 0.75em 0.5em !important;
+  border-radius: 0.75rem !important;
+  margin: 0.25rem 0 !important;
+  font-weight: 500;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #fce7f3 !important; /* pink-100 */
+  color: #ec4899;
+}
+
+.react-calendar__tile--now {
+  background: white !important;
+  border: 2px dashed #fbcfe8 !important;
+  color: #db2777 !important;
+}
+
+.react-calendar__tile--active {
+  background: #fbcfe8 !important; /* pink-200 */
+  color: #be185d !important;
+  border: 2px solid #f9a8d4 !important;
+}
+
+/* Scrollbar for tasks list */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #fffbeb;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #fcd34d;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #fbbf24;
+}
