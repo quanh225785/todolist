@@ -17,7 +17,9 @@ import {
 
 // Cấu hình Base API URL (dùng biến môi trường VITE_API_URL nếu có)
 const API_PATH = "/api/todos";
-const API_URL = `${import.meta.env.VITE_API_URL || ""}${API_PATH}`;
+const rawBase = import.meta.env.VITE_API_URL || "";
+const API_BASE = rawBase.replace(/\/+$|\/a$/i, ""); // remove trailing slashes and accidental "/a"
+const API_URL = `${API_BASE}${API_PATH}`;
 
 // GIF URL mapping based on mood and progress
 const GIF_COLLECTION = {
