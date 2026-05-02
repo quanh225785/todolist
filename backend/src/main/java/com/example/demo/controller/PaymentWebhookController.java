@@ -8,6 +8,7 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletRequest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.demo.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +28,8 @@ public class PaymentWebhookController {
     private String sepaySecret;
 
     private final ObjectMapper mapper = new ObjectMapper();
+
+    private final OrderService orderService;
 
     @PostMapping("/api/payment/webhook")
     public ResponseEntity<String> handleWebhook(HttpServletRequest request, @RequestBody String body) {
@@ -65,7 +68,13 @@ public class PaymentWebhookController {
             Map<String, Object> payload = mapper.readValue(body, Map.class);
             logger.info("SePay webhook received: {}", payload);
 
-            // TODO: implement idempotent processing: check transaction id and update DB order status
+            // Update or insert order record based on payload (idempotent)
+            try {
+                orderService.upsertOrderFromWebhook(payload);
+            } catch (Exception e) {
+                logger.error("Error updating order from webhook", e);
+                return ResponseEntity.status(500).body("order_update_failed");
+            }
 
             return ResponseEntity.ok("ok");
         } catch (Exception e) {
