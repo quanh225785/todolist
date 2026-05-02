@@ -14,6 +14,7 @@ import {
   Clock,
   AlertCircle,
 } from "lucide-react";
+import SePayForm from "./SePayForm";
 
 // Cấu hình Base API URL (dùng biến môi trường VITE_API_URL nếu có)
 const API_PATH = "/api/todos";
@@ -265,6 +266,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-pink-50 flex items-center justify-center p-4 font-sans text-gray-800 relative">
+      <SePayForm />
       {/* Completion Animation Overlay */}
       {showCompletionAnimation && (
         <div className="fixed inset-0 pointer-events-none flex items-center justify-center z-40">

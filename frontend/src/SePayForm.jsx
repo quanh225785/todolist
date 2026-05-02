@@ -40,19 +40,23 @@ export default function SePayForm() {
   };
 
   return (
-    <div>
-      <button onClick={initPayment} disabled={loading} className="px-3 py-1 bg-blue-600 text-white rounded">
-        {loading ? 'Loading...' : 'Thanh toán demo (SePay)'}
-      </button>
+    <div style={{ position: 'fixed', top: 16, right: 16, zIndex: 60 }}>
+      <div className="bg-white shadow-lg rounded-xl p-3 w-56 text-sm">
+        <button onClick={initPayment} disabled={loading} className="w-full px-3 py-2 bg-blue-600 text-white rounded">
+          {loading ? 'Loading...' : 'Thanh toán'}
+        </button>
 
-      {checkoutURL && fields && (
-        <form action={checkoutURL} method="POST" style={{ marginTop: 10 }}>
-          {Object.keys(fields).map((k) => (
-            <input key={k} type="hidden" name={k} value={fields[k]} />
-          ))}
-          <button type="submit" className="px-3 py-1 bg-green-600 text-white rounded">Mở trang thanh toán</button>
-        </form>
-      )}
+        {checkoutURL && fields && (
+          <form action={checkoutURL} method="POST" style={{ marginTop: 8 }}>
+            {Object.keys(fields).map((k) => (
+              <input key={k} type="hidden" name={k} value={fields[k]} />
+            ))}
+            <button type="submit" className="w-full mt-2 px-3 py-2 bg-green-600 text-white rounded">Mở trang thanh toán</button>
+          </form>
+        )}
+
+        <div className="text-xs text-gray-500 mt-2">SePay sandbox demo</div>
+      </div>
     </div>
   );
 }
