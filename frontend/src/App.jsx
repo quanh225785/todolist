@@ -14,10 +14,13 @@ import {
   Clock,
   AlertCircle,
 } from "lucide-react";
+import SePayForm from "./SePayForm";
 
 // Cấu hình Base API URL (dùng biến môi trường VITE_API_URL nếu có)
 const API_PATH = "/api/todos";
-const API_URL = `${import.meta.env.VITE_API_URL || ""}${API_PATH}`;
+const rawBase = import.meta.env.VITE_API_URL || "";
+const API_BASE = rawBase.replace(/\/+$|\/a$/i, ""); // remove trailing slashes and accidental "/a"
+const API_URL = `${API_BASE}${API_PATH}`;
 
 // GIF URL mapping based on mood and progress
 const GIF_COLLECTION = {
@@ -263,6 +266,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-pink-50 flex items-center justify-center p-4 font-sans text-gray-800 relative">
+      <SePayForm />
       {/* Completion Animation Overlay */}
       {showCompletionAnimation && (
         <div className="fixed inset-0 pointer-events-none flex items-center justify-center z-40">
