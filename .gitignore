@@ -1,0 +1,15 @@
+# Ignore environment files with secrets
+*.env
+**/.env
+
+# Node modules
+node_modules/
+frontend/node_modules/
+payment-server/node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Logs
+*.log
