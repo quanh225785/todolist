@@ -15,8 +15,9 @@ import {
   AlertCircle,
 } from "lucide-react";
 
-// Cấu hình Base API URL (đã được proxy ở vite.config.js)
-const API_URL = "/api/todos";
+// Cấu hình Base API URL (dùng biến môi trường VITE_API_URL nếu có)
+const API_PATH = "/api/todos";
+const API_URL = `${import.meta.env.VITE_API_URL || ""}${API_PATH}`;
 
 // GIF URL mapping based on mood and progress
 const GIF_COLLECTION = {
